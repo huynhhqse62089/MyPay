@@ -1,6 +1,8 @@
 package com.example.dev00.myall.utils
 
 import android.content.Context
+import android.support.v4.content.ContextCompat
+import android.util.Log
 import android.widget.Toast
 import java.util.regex.Pattern
 
@@ -28,5 +30,13 @@ class Utils {
          * Create Toast
          */
         fun createToast(context: Context, message: String) = Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+
+        /**
+         * HuynhHQ
+         * Write Log
+         */
+        fun writeLog(tag: String?, msg: String?) = Log.d(tag, msg)
+
+
     }
 }
