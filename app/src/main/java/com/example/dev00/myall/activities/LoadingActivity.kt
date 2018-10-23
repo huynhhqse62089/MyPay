@@ -1,18 +1,14 @@
-package com.example.dev00.myall
+package com.example.dev00.myall.activities
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.support.v4.content.ContextCompat
-import android.util.AndroidException
-import android.util.Log
-import android.view.Window
 import android.view.WindowManager
 import android.view.animation.Animation
 import android.view.animation.AnimationUtils
+import com.example.dev00.myall.R
 import com.example.dev00.myall.utils.Utils
 import kotlinx.android.synthetic.main.activity_loading.*
 import java.lang.Exception

@@ -1,6 +1,6 @@
-package com.example.dev00.myall.utils
+package com.example.dev00.myall.helpers
 
-class Constan {
+class Constants {
     companion object {
         val RC_SIGN_IN: Int = 101
     }
