@@ -24,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : FragmentActivity() {
 
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var mDatabase: Firebase
     private lateinit var mAuthListerner: FirebaseAuth.AuthStateListener
     private lateinit var gso: GoogleSignInOptions
     private lateinit var mGoogleApiClient: GoogleApiClient
@@ -83,7 +84,7 @@ class LoginActivity : FragmentActivity() {
 
     private fun firebaseAuthWithGoogle(acct: GoogleSignInAccount) {
         Utils.writeLog(TAG, "firebaseAuthWithGoogle:" + acct.id!!)
-
+var databaseUsers = FirebaseDa
         val credential = GoogleAuthProvider.getCredential(acct.idToken, null)
         firebaseAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this) { task ->
