@@ -22,4 +22,8 @@
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
+    <!--nav_activity-->
+    <string name="nav_logout">Đăng xuất</string>
+    <string name="nav_fast_recharge_card">Nạp nhanh thẻ cào</string>\
+    <string name="nav_main_screen">Màn hình chính</string>
 </resources>
