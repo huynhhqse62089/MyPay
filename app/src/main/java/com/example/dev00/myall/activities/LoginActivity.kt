@@ -2,10 +2,12 @@ package com.example.dev00.myall.activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.os.Handler
 import android.support.v4.app.FragmentActivity
 import android.util.Log
 import com.example.dev00.myall.R
 import com.example.dev00.myall.helpers.Constants.Companion.RC_SIGN_IN
+import com.example.dev00.myall.models.GoogleApiClient_Singleton
 import com.example.dev00.myall.models.User
 import com.example.dev00.myall.utils.Utils
 import com.google.android.gms.auth.api.Auth
@@ -26,14 +28,13 @@ import kotlinx.android.synthetic.main.activity_login.*
  */
 class LoginActivity : FragmentActivity() {
 
+    val TAG: String = "LoginActivity"
     private lateinit var firebaseAuth: FirebaseAuth
     private lateinit var mDatabase: DatabaseReference
     private lateinit var mAuthListerner: FirebaseAuth.AuthStateListener
     private lateinit var gso: GoogleSignInOptions
     private lateinit var mGoogleApiClient: GoogleApiClient
-    var context = this
-    val TAG: String = "LoginActivity"
-
+    private var doubleBackToExitPressedOnce: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,7 +47,7 @@ class LoginActivity : FragmentActivity() {
         //Disk persistence
         //enable disk persistence that automatically stores
         // the data offline in case of no internet connection
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
+//        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
         firebaseAuth = FirebaseAuth.getInstance()
         mAuthListerner = FirebaseAuth.AuthStateListener {
@@ -65,6 +66,7 @@ class LoginActivity : FragmentActivity() {
                 }
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build()
+        GoogleApiClient_Singleton.getInstance().setGoogleApiClient(mGoogleApiClient)
     }
 
     private fun setupAction() {
@@ -119,44 +121,22 @@ class LoginActivity : FragmentActivity() {
         super.onStart()
         firebaseAuth.addAuthStateListener(mAuthListerner)
     }
-//    private fun validInfomation(): ValidationRespond {
-//        var result = ValidationRespond()
-//        // Reset errors.
-//        email.error = null
-//        txt_password.error = null
-//
-//        // Store values at the time of the login attempt.
-//        val emailStr = email.text.toString()
-//        val passwordStr = txt_password.text.toString()
-//
-//        var cancel = false
-//
-//
-//        // Check for a valid email address.
-//        if (TextUtils.isEmpty(emailStr)) {
-//            email.error = getString(R.string.error_field_required)
-//            result.FocusView = email
-//            result.IsCancel = true
-//            cancel = true
-//        } else if (!isEmailValid(emailStr)) {
-//            email.error = getString(R.string.error_invalid_email)
-//            result.FocusView = email
-//            result.IsCancel = true
-//            cancel = true
-//        }
-//
-//        if (TextUtils.isEmpty(passwordStr) && !cancel) {
-//            txt_password.error = getString(R.string.error_field_password_required)
-//            result.FocusView = txt_password
-//            result.IsCancel = true
-//        } else if (!isPasswordValid(passwordStr) && !cancel) {
-//            txt_password.error = getString(R.string.error_invalid_password)
-//            result.FocusView = txt_password
-//            result.IsCancel = true
-//        }
-//
-//        return result
-//    }
 
+    override fun onBackPressed() {
+        if (doubleBackToExitPressedOnce) {
+            super.onBackPressed()
+            finish()
+            moveTaskToBack(true)
+            System.exit(0)
+        } else {
+            doubleBackToExitPressedOnce = true
+            Utils.createToast(this@LoginActivity, "Nhấn Back thêm lần nữa để thoát")
+            Handler().postDelayed({ doubleBackToExitPressedOnce = false }, 2000)
+        }
+    }
+
+    private fun saveUser(email: String, phone: String?, type: Int){
+
+    }
 
 }

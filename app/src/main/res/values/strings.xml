@@ -2,7 +2,8 @@
     <string name="app_name">MyPay</string>
     <string name="app_login">Đăng nhập</string>
     <!-- Strings related to login -->
-    <string name="prompt_email">Email</string>
+    <string name="prompt_email">Nhập email</string>
+    <string name="prompt_phone_number">Nhập số điện thoại</string>
     <string name="prompt_password">Password</string>
     <string name="action_sign_in">Sign in</string>
     <string name="action_sign_up">Sign up for an account?</string>
@@ -26,4 +27,5 @@
     <string name="nav_logout">Đăng xuất</string>
     <string name="nav_fast_recharge_card">Nạp nhanh thẻ cào</string>\
     <string name="nav_main_screen">Màn hình chính</string>
+    <string name="title_activity_asdasdzxczxcas">Sign in</string>
 </resources>
